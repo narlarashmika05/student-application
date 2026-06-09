@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f2f2f2;
+        }
+
+        .container{
+            width:350px;
+            margin:100px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
+        }
+
+        h2{
+            text-align:center;
+            color:darkcyan;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            background:darkcyan;
+            color:white;
+            border:none;
+            cursor:pointer;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Login Form</h2>
+
+<input type="text"
+id="username"
+placeholder="Enter Username">
+
+<input type="password"
+id="password"
+placeholder="Enter Password">
+
+<button onclick="loginUser()">
+Login
+</button>
+
+</div>
+
+<script>
+
+function loginUser(){
+
+    let username =
+    document.getElementById("username").value;
+
+    let password =
+    document.getElementById("password").value;
+
+    let storedUser =
+    localStorage.getItem("username");
+
+    let storedPass =
+    localStorage.getItem("password");
+
+    if(username==storedUser &&
+       password==storedPass){
+
+        alert("Login Successful");
+
+        window.location.href=
+        "dashboard.html";
+    }
+    else{
+
+        alert("Invalid Username or Password");
+    }
+}
+
+</script>
+
+</body>
+</html>

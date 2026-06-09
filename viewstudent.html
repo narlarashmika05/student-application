@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>View Students</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+}
+
+.container{
+    width:80%;
+    margin:50px auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px gray;
+}
+
+h1{
+    text-align:center;
+    color:darkcyan;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:darkcyan;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+    border:1px solid #ccc;
+}
+
+.edit-btn{
+    background:orange;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    cursor:pointer;
+}
+
+.delete-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    cursor:pointer;
+}
+
+.add-btn{
+    display:block;
+    margin:20px auto;
+    padding:10px 20px;
+    background:darkcyan;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Student Details</h1>
+
+<table id="studentTable">
+
+<tr>
+    <th>Name</th>
+    <th>Roll No</th>
+    <th>Branch</th>
+    <th>CGPA</th>
+    <th>Edit</th>
+    <th>Delete</th>
+</tr>
+
+</table>
+
+<button class="add-btn"
+onclick="window.location.href='addstudent.html'">
+Add Student
+</button>
+
+</div>
+
+<script>
+
+displayStudents();
+
+function displayStudents(){
+
+    let students =
+    JSON.parse(localStorage.getItem("students")) || [];
+
+    let table =
+    document.getElementById("studentTable");
+
+    students.forEach((student,index)=>{
+
+        let row = table.insertRow();
+
+        row.insertCell(0).innerHTML = student.name;
+        row.insertCell(1).innerHTML = student.rollno;
+        row.insertCell(2).innerHTML = student.branch;
+        row.insertCell(3).innerHTML = student.cgpa;
+
+        row.insertCell(4).innerHTML =
+        `<button class="edit-btn"
+        onclick="editStudent(${index})">
+        Edit
+        </button>`;
+
+        row.insertCell(5).innerHTML =
+        `<button class="delete-btn"
+        onclick="deleteStudent(${index})">
+        Delete
+        </button>`;
+    });
+
+}
+
+function deleteStudent(index){
+
+    let students =
+    JSON.parse(localStorage.getItem("students"));
+
+    students.splice(index,1);
+
+    localStorage.setItem(
+    "students",
+    JSON.stringify(students));
+
+    location.reload();
+}
+
+function editStudent(index){
+
+    localStorage.setItem(
+    "editIndex",
+    index);
+
+    window.location.href =
+    "editstudent.html";
+}
+
+</script>
+
+</body>
+</html>

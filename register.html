@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f2f2f2;
+        }
+        .container{
+            width:350px;
+            margin:100px auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px gray;
+        }
+        h2{
+            text-align:center;
+            color:darkcyan;
+        }
+        input{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            box-sizing:border-box;
+        }
+        button{
+            width:100%;
+            padding:10px;
+            background:darkcyan;
+            color:white;
+            border:none;
+            cursor:pointer;
+        }
+        button:hover{
+            background:teal;
+        }
+        label{
+            color:darkcyan
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Registration Form</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="Enter Username">
+    <label for="email">Email:</label>
+    <input type="text" id="email" placeholder="Enter Email">
+    <label for="password">Password:</label>
+    <input type="password" id="password" placeholder="Enter Password">
+    <label for="cpassword">Confirm Password:</label>
+    <input type="password" id="cpassword" placeholder="Confirm Password">
+    <label for="mobile">Mobile Number:</label>
+    <input type="text" id="mobile" placeholder="Mobile Number">
+    <button onclick="registerUser()">Register</button>
+</div>
+<script>
+function registerUser(){
+    let username = document.getElementById("username").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value;
+    let cpassword = document.getElementById("cpassword").value;
+    let mobile = document.getElementById("mobile").value.trim();
+    let namePattern = /^[A-Za-z ]+$/;
+    let emailPattern =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$/;
+    let mobilePattern = /^[0-9]{10}$/;
+    let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+    if(username==="" || email==="" || password==="" ||
+       cpassword==="" || mobile===""){
+        alert("All fields are required");
+        return;
+    }
+    if(!namePattern.test(username)){
+        alert("Username should contain only alphabets");
+        return;
+    }
+    if(!emailPattern.test(email)){
+        alert("Enter a valid email address");
+        return;
+    }
+    if(!mobilePattern.test(mobile)){
+        alert("Mobile number must contain exactly 10 digits");
+        return;
+    }
+    if(!passwordPattern.test(password)){
+        alert("Invalid Password");
+        return;
+    }
+    if(password !== cpassword){
+        alert("Passwords do not match");
+        return;
+    }
+    localStorage.setItem("username", username);
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+    localStorage.setItem("mobile", mobile);
+    alert("Registration Successful");
+    window.location.href = "login.html";
+}
+</script>
+</body>
+</html>

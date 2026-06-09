@@ -1,0 +1,126 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container{
+            width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        h2{
+            text-align: center;
+            color: darkcyan;
+        }
+
+        label{
+            display: block;
+            margin-top: 10px;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button{
+            width: 100%;
+            padding: 10px;
+            background-color: darkcyan;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Add Student Details</h2>
+
+    <label>Name</label>
+    <input type="text" id="name">
+
+    <label>Roll Number</label>
+    <input type="text" id="rollno">
+
+    <label>Branch</label>
+    <input type="text" id="branch">
+
+    <label>CGPA</label>
+    <input type="text" id="cgpa">
+    <button onclick="addStudent()">Add Student</button>
+
+</div>
+
+<script>
+
+function addStudent(){
+
+    let name = document.getElementById("name").value;
+    let rollno = document.getElementById("rollno").value;
+    let branch = document.getElementById("branch").value;
+    let cgpa = document.getElementById("cgpa").value;
+
+    let students =
+        JSON.parse(localStorage.getItem("students")) || [];
+
+    students.push({
+        name:name,
+        rollno:rollno,
+        branch:branch,
+        cgpa:cgpa
+    });
+
+    localStorage.setItem(
+        "students",
+        JSON.stringify(students)
+    );
+
+    alert("Student Added Successfully");
+
+    window.location.href = "viewstudent.html";
+}
+
+</script>
+
+</body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Student Profile</h2>
+    <label>Enter Student Name</label>
+    <input type="text"></input>
+    <br><br>
+    <label>Enter RollNo</label>
+    <input type="text"></input>
+    <br><br>
+    <label>Enter Age</label>
+    <input type="text"></input>
+    <br><br>
+</body>
+>>>>>>> 4bdc59c8b22568f24c407e2723ac63cac4835d13
+</html>
